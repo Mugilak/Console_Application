@@ -1,0 +1,8 @@
+Features added :
+
+Flights and Routes can be Added dynamically
+passenger details are added
+Tickets can be Booked till seats gets filled
+can view Availabile Flights while booking
+validations for user inputs(for specific things (while adding flights))
+can view status of booked ticket by using PNR number
