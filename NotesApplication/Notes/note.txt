@@ -1,0 +1,1 @@
+java is a platform independent language
