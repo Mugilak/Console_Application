@@ -1,0 +1,12 @@
+Target User : Passenger
+
+-- database connected - mysql
+
+features added:
+
+login page,
+sign up page
+book tickets.
+login and sign up are validated
+user inputs are validated
+password in encrypted with sha256
