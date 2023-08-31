@@ -24,7 +24,7 @@ public class BusBooking {
 		return database;
 	}
 
-	public Statement setConnection() {
+	private Statement setConnection() {
 		String url = "jdbc:mysql://localhost:3306/busticket";
 		String username = "root";
 		String pwd = "mugi123";

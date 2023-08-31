@@ -8,6 +8,13 @@ public class PerformEvaluation {
 	Stack<Double> NumberStack = new Stack<>();
 	public int peekPrecedence, opPrecedence;
 
+	public void setData(String e) {
+		this.expression = e;
+	}
+
+	public PerformEvaluation() {
+	}
+
 	public PerformEvaluation(String expression) {
 		this.expression = expression;
 	}

@@ -9,7 +9,6 @@ public class LoginManage {
 	private CustomerManage manage;
 	private LoginController control;
 	private Scanner input = new Scanner(System.in);
-	private int i;
 
 	public LoginManage() {
 		manage = new CustomerManage();
@@ -17,6 +16,7 @@ public class LoginManage {
 	}
 
 	public void login() {
+		int i = 0;
 		Customer customer = accountAvailable();
 		if (customer != null) {
 			System.out.println("You are logged in succesfully ! ");
@@ -25,6 +25,11 @@ public class LoginManage {
 			System.out.println("Invalid credentials  /  not available account");
 			i++;
 			if (i < 3) {
+				System.out.println("Do you want continue to login (y/n)");
+				char choice = input.next().charAt(0);
+				if(choice=='n'||choice=='N') {
+					return;
+				}
 				login();
 			} else if (i == 3) {
 				System.out.println("3 chances are over ... try again");

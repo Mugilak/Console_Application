@@ -56,15 +56,15 @@ public class PlayGameController {
 		}
 		firstInning.setBattingTeam(battingTeam);
 		firstInning.setBowlingTeam(bowlingTeam);
-		playGame(firstInning, input, target);
 		secondInning = new Innings();
 		secondInning.setBattingTeam(firstInning.getBowlingTeam());
 		secondInning.setBowlingTeam(firstInning.getBattingTeam());
+		playGame(firstInning, input, target);
 		playGame(secondInning, input, firstInning.getTotalRuns());
 	}
 
 	private void playGame(Innings currentInning, Queue<List<String>> input, int target) {
-		int wickets = 0, runs = 0, totalRuns = 0, extras = 0, balls = 0;
+		int wickets = 0, runs = 0, totalRuns = 0, extras = 0, balls = 0,overs=0;
 		String run = "";
 		List<BatsMan> batsmen = currentInning.getBattingTeam().getBatsmen();
 		List<Bowler> bowlers = currentInning.getBowlingTeam().getBowlers();
@@ -97,14 +97,14 @@ public class PlayGameController {
 				currentBowler.setWicket(currentBowler.getWicket() + 1);
 			} else if (run.matches("^[0-9]*Wd$")) {
 				runs = Integer.valueOf((String) run.subSequence(0, run.length() - 2));
-				currentBowler.setRuns(currentBowler.getRuns() + runs);
+				currentBowler.setRuns(currentBowler.getRuns() + runs + 1);
 				currentBowler.setBowledBalls(currentBowler.getBowledBalls() + 1);
 				striker.addBalls(1);
 				totalRuns++;
 				extras++;
 			} else if (run.matches("^[0-9]*Nb$")) {
 				runs = Integer.valueOf((String) run.subSequence(0, run.length() - 2));
-				currentBowler.setRuns(currentBowler.getRuns() + runs);
+				currentBowler.setRuns(currentBowler.getRuns() + runs + 1);
 				currentBowler.setBowledBalls(currentBowler.getBowledBalls() + 1);
 				striker.addBalls(1);
 				totalRuns++;
@@ -155,6 +155,10 @@ public class PlayGameController {
 				break;
 			}
 			if (balls / 6 == 5) {
+				currentInning.setTotalWickets(wickets);
+				currentInning.setExtras(extras);
+				currentInning.setTotalBalls(balls);
+				currentInning.setTotalRuns(totalRuns);
 				break;
 			}
 			if (over.size() == 0) {
@@ -185,7 +189,7 @@ public class PlayGameController {
 			output = output + "" + batsmen.get(i).getName() + "" + isOut + " - " + batsmen.get(i).getRuns() + " runs ("
 					+ batsmen.get(i).getBalls() + " balls)\n";
 		}
-		List<Bowler> bowlers = nextInning.getBowlingTeam().getBowlers();
+		List<Bowler> bowlers = currentInning.getBattingTeam().getBowlers();
 		output += "\nBOWLING : \n";
 		for (int i = 0; i < 2; i++) {
 			output += "" + bowlers.get(i).getName() + " - ";
