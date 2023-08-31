@@ -17,7 +17,7 @@ public class InputController {
 	private ContactDB contactDB = ContactDB.getInstance();
 
 	public JSONArray getJsonArray() {
-		String path = "C:\\Users\\91638\\eclipse-workspace\\contact Application\\AllContactsData.json";
+		String path = "C:\\Users\\91638\\git\\Console_Application\\contact Application\\src\\com\\contactapp\\model\\AllContactsData.json";
 		Scanner file;
 		JSONArray jsonArray = null;
 		try {
